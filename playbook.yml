@@ -1,0 +1,25 @@
+#!/usr/bin/env ansible-playbook
+
+- name: Test lookup remplate
+  hosts: 'localhost'
+  become: False
+  gather_facts: False
+
+  tasks:
+
+    - name: Gather data from passwd
+      getent:
+        database: 'passwd'
+        split: ':'
+
+    - name: Check home directories
+      stat:
+        path: '{{ item }}'
+      with_items: '{{ lookup("template", "lookup/homedirs_yaml.j2") | from_yaml }}'
+      ignore_errors: True
+
+    - name: Check home directories
+      stat:
+        path: '{{ item }}'
+      with_items: '{{ lookup("template", "lookup/homedirs_json.j2", convert_data=False) | from_json }}'
+      ignore_errors: True

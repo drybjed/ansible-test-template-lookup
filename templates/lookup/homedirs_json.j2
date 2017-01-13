@@ -1,0 +1,9 @@
+{% set output = [] %}
+{% if getent_passwd|d() %}
+{%   for user in [ 'root', 'backup' ] %}
+{%     if getent_passwd[user]|d() %}
+{%       set _ = output.append(getent_passwd[user][4]) %}
+{%     endif %}
+{%   endfor %}
+{% endif %}
+{{ output | to_json }}
