@@ -4,6 +4,8 @@ ansible-test-template-lookup
 This repository can be used to test issues with Ansible ``lookup("template")``
 lookup. The issue started after `fix for CVE-2016-9587 <https://github.com/ansible/ansible/commit/ec84ff6de6eca9224bf3f22b752bb8da806611ed>`_ commit and is present in current Ansible ``stable-2.1`` and ``stable-2.2`` branches.
 
+the issue is present in the ``devel`` branch as well, introduced by the `fix for CVE-2016-9587 <https://github.com/ansible/ansible/commit/a6fff93967763c45370b2215f79a8050e6e6486a>`_ commit.
+
 To perform the test, run in a terminal:
 
 .. code-block:: console
